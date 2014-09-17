@@ -13,7 +13,7 @@ namespace BondDataService
     public class Producer : IProducer
     {
         //Use thread safe collections
-        private ConcurrentDictionary<string, ConcurrentBag<ICallback>> subscribers = new ConcurrentDictionary<string, ConcurrentBag<ICallback>>();
+        private ConcurrentDictionary<string, List<ICallback>> subscribers = new ConcurrentDictionary<string, List<ICallback>>();
 
         public void Subscribe(string name)
         {
@@ -21,9 +21,9 @@ namespace BondDataService
             if (!subscribers.ContainsKey(name))
             {
                 //Create a subscriber set for this bond
-                if (!subscribers.TryAdd(name, new ConcurrentBag<ICallback>()))
+                if (!subscribers.TryAdd(name, new List<ICallback>()))
                 {
-                    Console.WriteLine("Subscribe({0}): Failed to create subscriber bag", name);
+                    Console.WriteLine("Subscribe({0}): Failed to create subscriber list", name);
                     return;
                 }
 
@@ -51,23 +51,16 @@ namespace BondDataService
             }
 
             var subscriber = OperationContext.Current.GetCallbackChannel<ICallback>();
-            if (!subscribers[name].Contains(subscriber))
+            if (!subscribers[name].Remove(subscriber))
             {
-                Console.WriteLine("Unsubscribe({0}): Not being subcribed to", name);
+                Console.WriteLine("Unsubscribe({0}): Failed to remove subscriber from list", name);
                 return;
             }
 
-            ICallback callback;
-            if (!subscribers[name].TryTake(out callback))
+            if (subscribers[name].Count == 0)
             {
-                Console.WriteLine("Unsubscribe({0}): Failed to take subscriber from bag", name);
-                return;
-            }
-
-            if (subscribers[name].IsEmpty)
-            {
-                ConcurrentBag<ICallback> bag;
-                if (!subscribers.TryRemove(name, out bag))
+                List<ICallback> dummy;
+                if (!subscribers.TryRemove(name, out dummy))
                 {
                     Console.WriteLine("Unsubscribe({0}): Failed to remove from dictionary", name);
                     return;
@@ -92,35 +85,43 @@ namespace BondDataService
                     var price = basePrice + Math.Sin(loopTime * 0.001);
 
                     var data = new BondData(name, price);
-                    var bag = subscribers[name];
-
+                    ICallback current = null;
                     try
                     {
                         //Broadcast to subscribers
-                        foreach (var callback in bag)
+                        foreach (var callback in subscribers[name])
+                        {
+                            current = callback;
                             callback.NewData(data);
+                        }
                     }
                     catch (TimeoutException)
                     {
                         Console.WriteLine("{0} subscriber has timed out and will be removed", name);
 
                         //Remove the subscriber from the bag
-                        ICallback callback;
-                        if (!bag.TryTake(out callback))
+                        if (!subscribers[name].Remove(current))
                         {
                             Console.WriteLine("SendDataAsync({0}): Failed to remove subscriber from bag", name);
                             continue;
                         }
 
                         //Remove bond if no more subscribers
-                        if (subscribers[name].IsEmpty)
+                        if (subscribers[name].Count == 0)
                         {
-                            if (!subscribers.TryRemove(name, out bag))
+                            List<ICallback> dummy;
+                            if (!subscribers.TryRemove(name, out dummy))
                             {
                                 Console.WriteLine("SendDataAsync({0}): Failed to remove from dictionary", name);
                                 continue;
                             }
                         }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(name);
+                        Console.WriteLine(e.GetType());
+                        Console.WriteLine(e.Message);
                     }
 
                     Sync(loopTime);

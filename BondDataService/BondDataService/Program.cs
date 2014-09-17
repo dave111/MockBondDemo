@@ -18,7 +18,7 @@ namespace BondDataService
             using (ServiceHost host = new ServiceHost(typeof(Producer), new Uri(uri)))
             {
                 var binding = new WSDualHttpBinding();
-                binding.SendTimeout = TimeSpan.FromSeconds(10.0);
+                binding.SendTimeout = TimeSpan.FromSeconds(3.0);
                 host.AddServiceEndpoint(typeof(IProducer), binding, uri);
 
                 // Enable metadata publishing.
