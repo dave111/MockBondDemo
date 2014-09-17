@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e3b3173a-9ebf-4e49-8cb7-8f71fcafa5b5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/BondData" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Producer.wsdl" MetadataType="Wsdl" ID="0c97ab1c-a17f-49a3-918e-06a6ce79fa6f" SourceId="1" SourceUrl="http://localhost:8080/BondData?wsdl" />
+    <MetadataFile FileName="BondData.disco" MetadataType="Disco" ID="8420434c-7a4c-4a42-b8c1-f9022463cd11" SourceId="1" SourceUrl="http://localhost:8080/BondData?disco" />
+    <MetadataFile FileName="BondData.xsd" MetadataType="Schema" ID="86ff851a-90d1-4960-9ca8-db169e6214f2" SourceId="1" SourceUrl="http://localhost:8080/BondData?xsd=xsd2" />
+    <MetadataFile FileName="BondData1.xsd" MetadataType="Schema" ID="150db42c-9fc2-46b1-a207-7850cafa8975" SourceId="1" SourceUrl="http://localhost:8080/BondData?xsd=xsd1" />
+    <MetadataFile FileName="BondData2.xsd" MetadataType="Schema" ID="2c90ed9d-91c5-4de7-80e9-1124e7ddc387" SourceId="1" SourceUrl="http://localhost:8080/BondData?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
