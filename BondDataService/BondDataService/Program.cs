@@ -23,7 +23,7 @@ namespace BondDataService
 
                 // Enable metadata publishing.
                 var smb = new ServiceMetadataBehavior();
-                //smb.HttpGetEnabled = true;
+                smb.HttpGetEnabled = true;
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
                 host.Description.Behaviors.Add(smb);
 
