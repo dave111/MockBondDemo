@@ -42,12 +42,22 @@ namespace BondDataClient
             
             program.ConsumeQueueAsync();
             for (int i = 1; i < 11; ++i)
-                session.Subscribe("Bond" + i);
+            {
+                if (session.Subscribe("Bond" + i))
+                    Console.WriteLine("Subscribed to Bond" + i);
+                else
+                    Console.WriteLine("Failed to subscribe to Bond" + i);
+            }
 
             Console.Read();
 
             for (int i = 1; i < 11; ++i)
-                session.Unsubscribe("Bond" + i);
+            {
+                if (session.Unsubscribe("Bond" + i))
+                    Console.WriteLine("Subscribed to Bond" + i);
+                else
+                    Console.WriteLine("Failed to subscribe to Bond" + i);
+            }
 
             program.run = false;
         }

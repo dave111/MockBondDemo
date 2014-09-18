@@ -117,6 +117,10 @@ namespace BondDataService
                             }
                         }
                     }
+                    catch (InvalidOperationException)
+                    {
+                        Console.WriteLine("SendDataAsync({0}): Subscriber list changed while processing", name);
+                    }
                     catch (Exception e)
                     {
                         Console.WriteLine(name);
@@ -128,7 +132,7 @@ namespace BondDataService
                 }
             });
 
-            Console.WriteLine("{0} has no more subscribers, price generation has stopped", name);
+            Console.WriteLine("SendDataAsync({0}): No more subscribers, price generation has stopped", name);
         }
 
         private void Sync(int startTime)

@@ -32,13 +32,20 @@ namespace BondDataApi
             if (producers.ContainsKey(name))
                 return false;
 
-            var client = new BondDataService.ProducerClient(context, new WSDualHttpBinding(), new EndpointAddress(uri));
+            var binding = new WSDualHttpBinding();
+            binding.SendTimeout = TimeSpan.FromSeconds(3.0);
+            var client = new BondDataService.ProducerClient(context, binding, new EndpointAddress(uri));
             if (!producers.TryAdd(name, client))
                 return false;
+            try
+            {
+                producers[name].Subscribe(name);
+            }
+            catch
+            {
+                return false;
+            }
 
-            Console.WriteLine("Subscribing to {0}...", name);
-            producers[name].Subscribe(name);
-            Console.WriteLine("Subscription finished");
             return true;
         }
 
@@ -47,7 +54,15 @@ namespace BondDataApi
             if (!producers.ContainsKey(name))
                 return false;
 
-            producers[name].Unsubscribe(name);
+            try
+            {
+                producers[name].Unsubscribe(name);
+            }
+            catch
+            {
+                return false;
+            }
+
             return true;
         }
     }
