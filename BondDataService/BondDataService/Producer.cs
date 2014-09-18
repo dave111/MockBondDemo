@@ -51,21 +51,7 @@ namespace BondDataService
             }
 
             var subscriber = OperationContext.Current.GetCallbackChannel<ICallback>();
-            if (!subscribers[name].Remove(subscriber))
-            {
-                Console.WriteLine("Unsubscribe({0}): Failed to remove subscriber from list", name);
-                return;
-            }
-
-            if (subscribers[name].Count == 0)
-            {
-                List<ICallback> dummy;
-                if (!subscribers.TryRemove(name, out dummy))
-                {
-                    Console.WriteLine("Unsubscribe({0}): Failed to remove from dictionary", name);
-                    return;
-                }
-            }
+            RemoveSubscriber(name, subscriber);
         }
 
         private async void SendDataAsync(string name)
@@ -85,13 +71,13 @@ namespace BondDataService
                     var price = basePrice + Math.Sin(loopTime * 0.001);
 
                     var data = new BondData(name, price);
-                    ICallback current = null;
+                    ICallback subscriber = null;
                     try
                     {
                         //Broadcast to subscribers
                         foreach (var callback in subscribers[name])
                         {
-                            current = callback;
+                            subscriber = callback;
                             callback.NewData(data);
                         }
                     }
@@ -99,23 +85,7 @@ namespace BondDataService
                     {
                         Console.WriteLine("{0} subscriber has timed out and will be removed", name);
 
-                        //Remove the subscriber from the bag
-                        if (!subscribers[name].Remove(current))
-                        {
-                            Console.WriteLine("SendDataAsync({0}): Failed to remove subscriber from bag", name);
-                            continue;
-                        }
-
-                        //Remove bond if no more subscribers
-                        if (subscribers[name].Count == 0)
-                        {
-                            List<ICallback> dummy;
-                            if (!subscribers.TryRemove(name, out dummy))
-                            {
-                                Console.WriteLine("SendDataAsync({0}): Failed to remove from dictionary", name);
-                                continue;
-                            }
-                        }
+                        RemoveSubscriber(name, subscriber);
                     }
                     catch (InvalidOperationException)
                     {
@@ -142,6 +112,24 @@ namespace BondDataService
                 Thread.Sleep(10 - elapsed);
             else
                 Thread.Yield();
+        }
+
+        private void RemoveSubscriber(string name, ICallback callback)
+        {
+            //Remove the subscriber from the list
+            if (!subscribers[name].Remove(callback))
+            {
+                Console.WriteLine("RemoveSubscriber({0}): Failed to remove subscriber from list", name);
+                return;
+            }
+
+            //Remove bond if no more subscribers
+            if (subscribers[name].Count == 0)
+            {
+                List<ICallback> dummy;
+                if (!subscribers.TryRemove(name, out dummy))
+                    Console.WriteLine("RemoveSubscriber({0}): Failed to remove from dictionary", name);
+            }
         }
     }
 }
