@@ -33,7 +33,7 @@ namespace BondDataApi
                 return false;
 
             var binding = new WSDualHttpBinding();
-            binding.SendTimeout = TimeSpan.FromSeconds(3.0);
+            binding.SendTimeout = TimeSpan.FromSeconds(10.0);
             var client = new BondDataService.ProducerClient(context, binding, new EndpointAddress(uri));
             if (!producers.TryAdd(name, client))
                 return false;

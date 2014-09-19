@@ -26,8 +26,9 @@ namespace BondDataClient
             {
                 while (run)
                 {
-                    BondData data = queue.Take();
+                    var data = queue.Take();
                     Console.WriteLine("NewData({0}, {1}, {2})", data.Name, data.Price.ToString("000.00"), data.Timestamp.ToString("HH:mm:ss.FFF"));
+
                     Thread.Yield();
                 }
             });
@@ -39,9 +40,9 @@ namespace BondDataClient
 
             var session = new Session(program.Process);
             //var session = new Session(program.queue);
-            
+
             program.ConsumeQueueAsync();
-            for (int i = 1; i < 11; ++i)
+            for (int i = 1; i < 2; ++i)
             {
                 if (session.Subscribe("Bond" + i))
                     Console.WriteLine("Subscribed to Bond" + i);
@@ -51,7 +52,7 @@ namespace BondDataClient
 
             Console.Read();
 
-            for (int i = 1; i < 11; ++i)
+            for (int i = 1; i < 2; ++i)
             {
                 if (session.Unsubscribe("Bond" + i))
                     Console.WriteLine("Subscribed to Bond" + i);
