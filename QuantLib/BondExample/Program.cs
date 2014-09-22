@@ -360,7 +360,7 @@ namespace BondExample
                 // the one used for discounting cash flows
                 var discountingTermStructure = new RelinkableYieldTermStructureHandle();
                 // the one used for forward rate forecasting
-                var forecastingTermStructure = new RelinkableYieldTermStructureHandle();
+                //var forecastingTermStructure = new RelinkableYieldTermStructureHandle();
 
                 #endregion
 
@@ -458,7 +458,7 @@ namespace BondExample
                 NQuantLibc.setCouponPricer(floatingRateBond.cashflows(), pricer);
 
                 // Yield curve bootstrapping
-                forecastingTermStructure.linkTo(depoSwapTermStructure);
+                //forecastingTermStructure.linkTo(depoSwapTermStructure);
                 discountingTermStructure.linkTo(bondDiscountingTermStructure);
 
                 // We are using the depo & swap curve to estimate the future Libor rates
@@ -527,9 +527,9 @@ namespace BondExample
                 Console.WriteLine("Sample indirect computations (for the floating rate bond): ");
                 Console.WriteLine(rule);
 
-                Console.WriteLine("Yield to Clean Price: {0}", floatingRateBond.cleanPrice(floatingRateBond.yield(new Actual360(), Compounding.Compounded, Frequency.Annual), new Actual360(), Compounding.Compounded, Frequency.Annual, settlementDate));
+                Console.WriteLine("Yield to Clean Price: {0}", floatingRateBond.cleanPrice(floatingRateBond.yield(new Actual360(), Compounding.Compounded, Frequency.Annual), new Actual360(), Compounding.Compounded, Frequency.Annual, settlementDate).ToString("000.00"));
 
-                Console.WriteLine("Clean Price to Yield: {0}", floatingRateBond.yield(floatingRateBond.cleanPrice(), new Actual360(), Compounding.Compounded, Frequency.Annual, settlementDate));
+                Console.WriteLine("Clean Price to Yield: {0}", floatingRateBond.yield(floatingRateBond.cleanPrice(), new Actual360(), Compounding.Compounded, Frequency.Annual, settlementDate).ToString("000.00"));
 
                 /* "Yield to Price"
                 "Price to Yield" */
