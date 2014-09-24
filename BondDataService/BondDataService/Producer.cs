@@ -39,6 +39,7 @@ namespace BondDataService
                 return;
             }
 
+            // my new feature
             subscribers[name].Add(subscriber);
         }
 
