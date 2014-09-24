@@ -402,6 +402,8 @@ namespace BondExample
                     100.0,
                     new Date(15, Month.May, 2007));
 
+                
+
                 fixedRateBond.setPricingEngine(bondEngine);
 
                 // Floating rate bond (3M USD Libor + 0.1%)
@@ -521,6 +523,9 @@ namespace BondExample
                 Console.CursorLeft = widths[2]; Console.Write(fixedRateBond.yield(new Actual360(), Compounding.Compounded, Frequency.Annual).ToString("000.00"));
                 Console.CursorLeft = widths[3]; Console.WriteLine(floatingRateBond.yield(new Actual360(), Compounding.Compounded, Frequency.Annual).ToString("000.00"));
 
+                double yield = fixedRateBond.yield(new Actual360(), Compounding.Compounded, Frequency.Annual);
+                Console.CursorLeft = widths[2]; Console.Write(BondFunctions.duration(fixedRateBond, new InterestRate(yield, fixedRateBond.dayCounter(), Compounding.Compounded, Frequency.Annual), Duration.Type.Modified));
+                
                 Console.WriteLine();
 
                 // Other computations

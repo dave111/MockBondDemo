@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Bonds>
+  <Bond ISIN="GB00B24FF097">
+    <Description>4¾% Treasury Gilt 2030</Description>
+    <IssueDate>22/01/2000</IssueDate>
+    <MaturityDate>07/12/2030</MaturityDate>
+    <Coupon>0.0475</Coupon>
+    <CleanPrice>124.14</CleanPrice>
+  </Bond>
+</Bonds>
