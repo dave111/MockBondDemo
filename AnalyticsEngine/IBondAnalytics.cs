@@ -11,7 +11,7 @@ namespace AnalyticsEngine
     {
         void Add(string isin, string issueDate, string maturityDate, double coupon);
 
-        double Yield(string isin, double cleanPrice, string refDate);
+        double Yield(string isin, double cleanPrice, string refDate = null);
 
         double NetPresentValue(string isin);
 
