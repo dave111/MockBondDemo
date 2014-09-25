@@ -9,6 +9,12 @@ namespace AnalyticsEngine
 {
     public interface IBondAnalytics
     {
-        double CalculateYield(string name, double price, Date settlementDate);
+        void Add(string isin, string issueDate, string maturityDate, double coupon);
+
+        double Yield(string isin, double cleanPrice, string refDate);
+
+        double NetPresentValue(string isin);
+
+        double ModifiedDuration(string isin, double yield, string refDate = null);
     }
 }

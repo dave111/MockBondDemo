@@ -1,10 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Bonds>
-  <Bond ISIN="GB00B24FF097">
-    <Description>4¾% Treasury Gilt 2030</Description>
-    <IssueDate>22/01/2000</IssueDate>
-    <MaturityDate>07/12/2030</MaturityDate>
-    <Coupon>0.0475</Coupon>
-    <CleanPrice>124.14</CleanPrice>
+  <Bond ISIN="GB00B7F9S958">
+    <Description>1% Treasury Gilt 2017</Description>
+    <IssueDate>08/03/2014</IssueDate>
+    <MaturityDate>07/09/2017</MaturityDate>
+    <Coupon>0.01</Coupon>
+    <CleanPrice>99.08</CleanPrice>
+  </Bond>
+  <Bond ISIN="GB00B4RMG977">
+    <Description>3¾% Treasury Gilt 2021</Description>
+    <IssueDate>18/03/2011</IssueDate>
+    <MaturityDate>07/09/2021</MaturityDate>
+    <Coupon>0.0375</Coupon>
+    <CleanPrice>110.61</CleanPrice>
+  </Bond>
+  <Bond ISIN="GB0002404191">
+    <Description>6% Treasury Stock 2028</Description>
+    <IssueDate>29/01/1998</IssueDate>
+    <MaturityDate>07/12/2028</MaturityDate>
+    <Coupon>0.06</Coupon>
+    <CleanPrice>139.0</CleanPrice>
   </Bond>
 </Bonds>

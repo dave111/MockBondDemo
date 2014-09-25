@@ -169,8 +169,8 @@ namespace BondExample
                 bondInstruments.Add(zc1y);
 
                 // Adding the Fixed rate bonds to the curve for the long end
-                for (int i = 0; i < (int)numberOfBonds; i++)
-                    bondInstruments.Add(bondsHelpers[i]);
+                for (int i = 0; i < numberOfBonds; i++)
+                   bondInstruments.Add(bondsHelpers[3]);
 
                 var bondDiscountingTermStructure = new PiecewiseFlatForward(settlementDate,
                     bondInstruments,
@@ -370,7 +370,7 @@ namespace BondExample
                 double faceAmount = 100;
 
                 // Pricing engine
-                var bondEngine = new DiscountingBondEngine(discountingTermStructure);
+                var bondEngine = new DiscountingBondEngine(new YieldTermStructureHandle(bondDiscountingTermStructure));
 
                 // Zero coupon bond
                 var zeroCouponBond = new ZeroCouponBond(settlementDays,
@@ -401,8 +401,6 @@ namespace BondExample
                     BusinessDayConvention.ModifiedFollowing,
                     100.0,
                     new Date(15, Month.May, 2007));
-
-                
 
                 fixedRateBond.setPricingEngine(bondEngine);
 

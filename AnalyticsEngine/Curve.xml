@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Curve Id="Discount">
+  <Deposit Tenor="1m">0.0039</Deposit>
+  <Deposit Tenor="3m">0.0048</Deposit>
+  <Deposit Tenor="6m">0.0057</Deposit>
+  <Deposit Tenor="1y">0.0057</Deposit>
+  <Bond IssueDate="08/03/2014" MaturityDate="07/09/2017" Coupon="0.01">99.08</Bond>
+  <Bond IssueDate="18/03/2011" MaturityDate="07/09/2021" Coupon="0.0375">110.61</Bond>
+  <Bond IssueDate="29/01/1998" MaturityDate="07/12/2028" Coupon="0.06">139.0</Bond>
+</Curve>
