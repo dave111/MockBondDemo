@@ -167,10 +167,10 @@ namespace AnalyticsEngine
                 helpers.Add(new SwapRateHelper(new QuoteHandle(new SimpleQuote(double.Parse(xSwap.Value))),
                                                 new Period(xSwap.Attribute("Tenor").Value),
                                                 new UnitedKingdom(UnitedKingdom.Market.Settlement),
-                                                Frequency.Annual,
+                                                Frequency.Semiannual,
                                                 BusinessDayConvention.Unadjusted,
-                                                new Thirty360(Thirty360.Convention.European),
-                                                new Euribor6M(),
+                                                new ActualActual(ActualActual.Convention.Bond),
+                                                new GBPLibor(new Period(1, TimeUnit.Years)),
                                                 new QuoteHandle(new SimpleQuote(0.0)),
                                                 new Period(1, TimeUnit.Days)));
             }

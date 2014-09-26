@@ -22,7 +22,7 @@ namespace BondDataClient
 
         private async void ConsumeQueueAsync()
         {
-            await Task.Run(() =>
+            await Task.Factory.StartNew(() =>
             {
                 while (run)
                 {
@@ -31,7 +31,8 @@ namespace BondDataClient
 
                     Thread.Yield();
                 }
-            });
+            },
+            TaskCreationOptions.LongRunning);
         }
 
         static void Main(string[] args)

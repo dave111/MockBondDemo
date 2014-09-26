@@ -59,7 +59,7 @@ namespace BondDataService
         {
             var rand = new Random(OperationContext.Current.GetHashCode() - Environment.TickCount);
 
-            await Task.Run(() => 
+            await Task.Factory.StartNew(() => 
             {
                 var basePrice = 100.0 + ((rand.NextDouble() - 0.5) * 10.0);
 
@@ -101,7 +101,8 @@ namespace BondDataService
 
                     Sync(loopTime);
                 }
-            });
+            },
+            TaskCreationOptions.LongRunning);
 
             Console.WriteLine("SendDataAsync({0}): No more subscribers, price generation has stopped", name);
         }
