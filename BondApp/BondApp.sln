@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondApp.Shell", "BondApp.Shell\BondApp.Shell.csproj", "{CE12C03B-D0AC-4A39-9E3B-A4D6F27FF8CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{CDD7FA9B-8715-4EFC-A3EE-2135A3C6E17F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondApp.Modules.PriceGrid", "BondApp.Modules.PriceGrid\BondApp.Modules.PriceGrid.csproj", "{D855BC37-8D03-4A85-85BF-AF5E273E9FAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE12C03B-D0AC-4A39-9E3B-A4D6F27FF8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE12C03B-D0AC-4A39-9E3B-A4D6F27FF8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE12C03B-D0AC-4A39-9E3B-A4D6F27FF8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE12C03B-D0AC-4A39-9E3B-A4D6F27FF8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D855BC37-8D03-4A85-85BF-AF5E273E9FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D855BC37-8D03-4A85-85BF-AF5E273E9FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D855BC37-8D03-4A85-85BF-AF5E273E9FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D855BC37-8D03-4A85-85BF-AF5E273E9FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D855BC37-8D03-4A85-85BF-AF5E273E9FAC} = {CDD7FA9B-8715-4EFC-A3EE-2135A3C6E17F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+	EndGlobalSection
+EndGlobal
